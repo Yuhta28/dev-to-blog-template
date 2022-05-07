@@ -1,0 +1,30 @@
+[
+  {
+    "id": 773216,
+    "relativePathToArticle": "./blog-posts/cw-oss-cloudwatch/i-use-cw-which-is-oss-to-tail-aws-cloudwatch-logs-2e9g.md"
+  },
+  {
+    "id": 784222,
+    "relativePathToArticle": "./blog-posts/be-attention-to-sshkey/be-attention-to-replace-a-key-pair-for-ec2-4e3j.md"
+  },
+  {
+    "id": 806920,
+    "relativePathToArticle": "./blog-posts/diffrence-ec2-risp-and-rds-ri/difference-between-ec2-ri-sp-and-rds-ri-1ad.md"
+  },
+  {
+    "id": 890855,
+    "relativePathToArticle": "./blog-posts/gha-with-oidc-terraform/github-actions-cicd-without-aws-credential-information-4no6.md"
+  },
+  {
+    "id": 964471,
+    "relativePathToArticle": "./blog-posts/keep-in-mind-coding-existing-infra/keep-in-mind-when-coding-existing-infrastructure-15b3.md"
+  },
+  {
+    "id": 1056501,
+    "relativePathToArticle": "./blog-posts/repography-make-readme-rich/repography-makes-github-repository-beautiful-3dn3.md"
+  },
+  {
+    "id": 1064616,
+    "relativePathToArticle": "./blog-posts/dev-to-github/dev-to-github.md"
+  }
+]

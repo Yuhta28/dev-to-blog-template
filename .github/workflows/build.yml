@@ -1,0 +1,68 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+
+      - name: Install reviewdog
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: Install Dependencies
+        uses: bahmutov/npm-install@v1
+
+        #Make sure that cache is retrieved even if steps fail
+      - name: cache-node-modules
+        uses: pat-s/always-upload-cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            node-
+
+      - name: Install textlint
+        run: 'npm install --save-dev textlint textlint-rule-common-misspellings textlint-rule-spellchecker'
+
+      - name: Run textlint
+        run: npx textlint -f checkstyle "blog-posts/**/*.md" >> .textlint.log
+
+      - name: Run reviewdog
+        if: failure()
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat .textlint.log
+          cat .textlint.log | reviewdog -f=checkstyle -name="textlint" -reporter="github-pr-review"
+
+      - name: Run Prettier
+        run: yarn run prettier:check
+
+      - name: Run Embedme
+        run: yarn run embedme:check
+
+  deploy:
+    name: Deploy
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+
+      - name: Install Dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Deploy to dev.to
+        run: DEV_TO_GIT_TOKEN=${{ secrets.DEV_TO_GIT_TOKEN }} yarn run dev-to-git

@@ -18,6 +18,21 @@ _\*1: Embedme allows you to write code in actual files rather than your readme, 
 
 If you prefer not to use Prettier or Embed me, you can do so by simply removing them but I think it's a nice thing to have!
 
+## How do I connect my git repo to dev.to?
+
+There's a `package.json` file where you can define my git repo URL.
+
+```json
+{
+  "name": "dev.to",
+  "repository": {
+    "type": "git",
+    "url": "<Paste GitHub repository URL>"
+  }
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+}
+```
+
 ## How do I choose which files I want to publish?
 
 There's a `dev-to-git.json` file where you can define an array of blog posts, e.g.

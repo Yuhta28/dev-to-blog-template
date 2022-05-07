@@ -11,7 +11,7 @@ import (
 )
 
 func curl() interface{} {
-	DEVAPIKEY := os.Getenv("DEVAPIKEY")
+	DEVAPIKEY := os.Getenv("DEVAPIKEY") //Set your DEV Community API Key in your environment variables
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", "https://dev.to/api/articles/me/unpublished", nil)
 	if err != nil {
@@ -38,7 +38,7 @@ func main() {
 		log.Fatalln(err)
 	}
 	input := curl()
-	iter := query.Run(input) // or query.RunWithContext
+	iter := query.Run(input)
 	for {
 		v, ok := iter.Next()
 		if !ok {

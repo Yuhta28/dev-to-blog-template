@@ -33,7 +33,7 @@ There's a `dev-to-git.json` file where you can define an array of blog posts, e.
 
 ## How can I find the ID of my blog post on dev.to?
 
-I write Go lang code to get the ID of my blog post on dev.to.
+I write Go lang code to get the ID of my blog post on dev.to. Before running code, you need to set DEV Community API Key to `DEVAPIKEY`
 
 ```go
 package main
@@ -49,7 +49,7 @@ import (
 )
 
 func curl() interface{} {
-	DEVAPIKEY := os.Getenv("DEVAPIKEY") //Set your dev.to API key in your environment variables
+	DEVAPIKEY := os.Getenv("DEVAPIKEY") //Set your DEV Community API Key in your environment variables
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", "https://dev.to/api/articles/me/unpublished", nil)
 	if err != nil {
@@ -76,7 +76,7 @@ func main() {
 		log.Fatalln(err)
 	}
 	input := curl()
-	iter := query.Run(input) // or query.RunWithContext
+	iter := query.Run(input)
 	for {
 		v, ok := iter.Next()
 		if !ok {
@@ -98,7 +98,7 @@ Simple and from there you have control over the following properties: `title`, `
 
 ## How do I add images to my blog posts?
 
-Instead of uploading them manually on dev.to, simply put them within your git repo and within the blog post use a relative link. Here's an example: `The following is an image: ![alt text](./assets/image.png 'Title image')`.
+Instead of uploading them manually on dev.to, simply put them within your git repo. Here's an example: `![image](./assets/sample.png)`.
 
 If you've got some plugin to preview your markdown from your IDE, the images will be correctly displayed. Then, on CI, right before they're published, the link will be updated to match the raw file.
 
@@ -112,20 +112,4 @@ First, you have to create a token on your dev.to account: https://dev.to/setting
 
 The following is simply a template that you may want to use for your own version of that repository.
 
-# Yuta's blog source
-
-https://dev.to/yuta28
-
-# Repography Dashboard
-
-Repography is a GitHub App that provides visualized dashboard in markdown format for GitHub repositories.
-
-https://dev.to/yuta28/repography-makes-github-repository-beautiful-3dn3
-
-## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Recent activity [![Time period](https://images.repography.com/24732629/Yuhta28/dev-to-blog/recent-activity/9a05f1ae24af64427d393b4c278c1b87_badge.svg)](https://repography.com)
-
-[![Timeline graph](https://images.repography.com/24732629/Yuhta28/dev-to-blog/recent-activity/9a05f1ae24af64427d393b4c278c1b87_timeline.svg)](https://github.com/Yuhta28/dev-to-blog/commits) [![Issue status graph](https://images.repography.com/24732629/Yuhta28/dev-to-blog/recent-activity/9a05f1ae24af64427d393b4c278c1b87_issues.svg)](https://github.com/Yuhta28/dev-to-blog/issues) [![Pull request status graph](https://images.repography.com/24732629/Yuhta28/dev-to-blog/recent-activity/9a05f1ae24af64427d393b4c278c1b87_prs.svg)](https://github.com/Yuhta28/dev-to-blog/pulls) [![Trending topics](https://images.repography.com/24732629/Yuhta28/dev-to-blog/recent-activity/9a05f1ae24af64427d393b4c278c1b87_words.svg)](https://github.com/Yuhta28/dev-to-blog/commits) [![Top contributors](https://images.repography.com/24732629/Yuhta28/dev-to-blog/recent-activity/9a05f1ae24af64427d393b4c278c1b87_users.svg)](https://github.com/Yuhta28/dev-to-blog/graphs/contributors)
-
-## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Structure
-
-[![Structure](https://images.repography.com/24732629/Yuhta28/dev-to-blog/structure/e05551a8c21c120f32e41c16b68f9d7b_table.svg)](https://github.com/Yuhta28/dev-to-blog)
+# Your blog source

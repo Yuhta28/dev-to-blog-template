@@ -2,7 +2,7 @@
   "name": "dev.to",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Yuhta28/dev-to-blog.git"
+    "url": "<Paste GitHub repository URL>"
   },
   "scripts": {
     "prettier": "prettier",

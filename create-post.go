@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	DEVAPIKEY := os.Getenv("DEVAPIKEY")
+	DEVAPIKEY := os.Getenv("DEVAPIKEY") //Set your DEV Community API Key in your environment variables
 	client := &http.Client{}
 	var data = strings.NewReader(`{"article":{"title":"Template","body_markdown":"Body","published":false,"tags":["tag1", "tag2"]}}`)
 	req, err := http.NewRequest("POST", "https://dev.to/api/articles", data)

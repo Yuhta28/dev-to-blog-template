@@ -12,14 +12,18 @@ func main() {
 	print("Enter the name of the new article: ")
 	fmt.Scan(&blog)
 
-	// Create blog directory
+	// Create blog directory and article file
 	if err := os.MkdirAll("blog-posts/"+blog, 0777); err != nil {
 		fmt.Println(err)
 	}
-	_, err := os.Create("blog-posts/" + blog + "/" + blog + ".md")
+	file_article, err := os.Create("blog-posts/" + blog + "/" + blog + ".md")
 	if err != nil {
 		fmt.Println(err)
 	}
+	defer file_article.Close()
+
+	// Add blog metadata in article file
+	file_article.WriteString("---\ntitle: Title \npublished: false\ndescription: description\ntags: tag1, tag2\n---\n")
 
 	// Create code directory
 	if err := os.MkdirAll("blog-posts/"+blog+"/code", 0777); err != nil {
